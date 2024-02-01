@@ -1,6 +1,4 @@
-# App
-
-GymPass
+# App GymPass
 
 ## RF (requisitos funcionais)
 
