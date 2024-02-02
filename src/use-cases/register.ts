@@ -1,5 +1,6 @@
 import { UsersRepository } from '@/repositories/users-repository';
 import { hash } from 'bcryptjs';
+import { UserEmailExistsError } from './errors/user-email-exists-error';
 
 
 interface RegisterUseCaseRequest {
@@ -20,7 +21,7 @@ export class RegisterUseCase {
 	
 	
 		if(userWithSameEmail){
-			throw new Error('email ja cadastrado!!');
+			throw new UserEmailExistsError();
 		}
 	
 		await this.usersRepository.create({
