@@ -1,8 +1,6 @@
-class UserEmailExistsError extends Error {
+export class UserEmailExistsError extends Error {
 	constructor() {
-		super();
-		this.message =  'User Email Exists';
+		super('User Email Exists');
 	}
 }
 
-export default new UserEmailExistsError();

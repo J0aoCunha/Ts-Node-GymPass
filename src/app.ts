@@ -15,6 +15,8 @@ app.setErrorHandler((error, _req, reply)=>{
 
 	if(Env.NODE_ENV !== 'production'){
 		console.error(error);
+	}else{
+		//todo: fix error logging
 	}
 
 	return reply.status(500).send();

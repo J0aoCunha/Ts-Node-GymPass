@@ -2,13 +2,13 @@ import { expect, describe, it} from 'vitest';
 import { RegisterUseCase } from '../register';
 import { compare } from 'bcryptjs';
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository';
-// import UserEmailExistsError from './user-email-exists-error';
+
 
 
 describe('Register use-case',()=>{
 	it('should be able register', async () => {
 
-		const UserRepository = new InMemoryUsersRepository();
+		const  UserRepository = new InMemoryUsersRepository();
 		const registerUseCase = new RegisterUseCase(UserRepository);
 
 		const { user } = await registerUseCase.execute({
@@ -46,14 +46,14 @@ describe('Register use-case',()=>{
 		
 		await registerUseCase.execute({
 			name:'john doe', 
-			email:'teste@example.com',
+			email:'teste1@example.com',
 			password: '123456'
 		});
 
 		expect(()=>
 			registerUseCase.execute({
 				name:'john doe', 
-				email:'teste@example.com',
+				email:'teste1@example.com',
 				password: '123456'
 			})
 		).rejects;
