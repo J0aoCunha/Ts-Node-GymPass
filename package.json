@@ -10,7 +10,8 @@
     "lint": "npx eslint --fix . ",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui"
   },
   "keywords": [],
   "author": "",
