@@ -1,16 +1,16 @@
 import { UsersRepository } from '@/repositories/users-repository';
 import { hash } from 'bcryptjs';
-import {UserEmailExistsError} from './errors/user-email-exists-error';
+import UserEmailExistsError from './errors/user-email-exists-error';
 import { User } from '@prisma/client';
 
-
-interface UserRegisterUseCase{
+interface UserRegisterUseCase {
 	user: User
 }
+
 interface RegisterUseCaseRequest {
-  name: string,
-  email: string,
-  password: string
+	name: string,
+	email: string,
+	password: string
 }
 
 
