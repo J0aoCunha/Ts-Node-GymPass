@@ -3,4 +3,3 @@ export default class UserEmailExistsError extends Error {
 		super('User Email Exists');
 	}
 }
-
