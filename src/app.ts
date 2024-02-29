@@ -1,22 +1,28 @@
 import fastify from 'fastify';
+import fastifyJwt from '@fastify/jwt';
 import { appRoutes } from './http/routes';
 import { ZodError } from 'zod';
 import { Env } from './env';
 
 export const app = fastify();
 
+app.register(fastifyJwt, {
+	secret: Env.JWT_SECRET,
+});
+
 app.register(appRoutes);
 
-app.setErrorHandler((error, _req, reply)=>{
-
-	if( error instanceof ZodError){
-		reply.status(400).send({message: 'erro na validacao dos dados', issues: error.format()});
+app.setErrorHandler((error, _req, reply) => {
+	if (error instanceof ZodError) {
+		reply
+			.status(400)
+			.send({ message: 'erro na validacao dos dados', issues: error.format() });
 	}
 
-	if(Env.NODE_ENV !== 'production'){
+	if (Env.NODE_ENV !== 'production') {
 		console.error(error);
-	}else{
-		//todo: fix error logging
+	} else {
+		// todo: fix error logging
 	}
 
 	return reply.status(500).send();
