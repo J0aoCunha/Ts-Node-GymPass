@@ -9,4 +9,3 @@ app
 	.then(() => {
 		console.log('⚠️ Server is running');
 	});
-// Controller de perfil
