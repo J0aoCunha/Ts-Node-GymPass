@@ -1,8 +1,10 @@
 import fastify from 'fastify';
 import fastifyJwt from '@fastify/jwt';
-import { appRoutes } from './http/routes';
 import { ZodError } from 'zod';
 import { Env } from './env';
+import { userRoutes } from './http/controllers/users/user-Routes';
+import { checkInRoutes } from './http/controllers/check-ins/checkIns-Routes';
+import { gymsRoutes } from './http/controllers/gyms/gyms-Routes';
 
 export const app = fastify();
 
@@ -10,7 +12,9 @@ app.register(fastifyJwt, {
 	secret: Env.JWT_SECRET,
 });
 
-app.register(appRoutes);
+app.register(userRoutes);
+app.register(gymsRoutes);
+app.register(checkInRoutes);
 
 app.setErrorHandler((error, _req, reply) => {
 	if (error instanceof ZodError) {
@@ -27,3 +31,4 @@ app.setErrorHandler((error, _req, reply) => {
 
 	return reply.status(500).send();
 });
+// #F301 17. Testes E2E de rotas de check-ins
