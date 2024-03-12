@@ -1,5 +1,6 @@
 import fastify from 'fastify';
 import fastifyJwt from '@fastify/jwt';
+import fastifyCookie from '@fastify/cookie';
 import { ZodError } from 'zod';
 import { Env } from './env';
 import { userRoutes } from './http/controllers/users/user-Routes';
@@ -10,7 +11,16 @@ export const app = fastify();
 
 app.register(fastifyJwt, {
 	secret: Env.JWT_SECRET,
+	cookie: {
+		cookieName: 'refreshToken',
+		signed:false
+	},
+	sign:{
+		expiresIn: '10m'
+	}
 });
+
+app.register(fastifyCookie);
 
 app.register(userRoutes);
 app.register(gymsRoutes);
@@ -31,4 +41,3 @@ app.setErrorHandler((error, _req, reply) => {
 
 	return reply.status(500).send();
 });
-// #F301 17. Testes E2E de rotas de check-ins
